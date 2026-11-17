@@ -6,3 +6,5 @@ python-dotenv==1.0.0
 passlib[bcrypt]==1.7.4
 scikit-learn==1.4.0
 Werkzeug==2.3.8
+gunicorn
+email-validator
