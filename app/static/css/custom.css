@@ -1,0 +1,108 @@
+/* Custom Theme for KaushalSetu – Royal Heritage */
+:root {
+  /* Palette */
+  --deep-forest: #173D32;
+  --emerald-forest: #285C49;
+  --antique-gold: #D6B875;
+  --warm-champagne: #F2E8D5;
+  --soft-ivory: #FAF8F1;
+  --dark-walnut: #38251F;
+  --muted-sage: #A8B6A0;
+
+  /* Typography */
+  --font-heading: 'Merriweather', serif;
+  --font-body: 'Open Sans', sans-serif;
+}
+
+/* Global */
+body {
+  background-color: var(--soft-ivory);
+  color: var(--dark-walnut);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--deep-forest);
+}
+
+a { color: var(--emerald-forest); }
+a:hover { color: var(--antique-gold); }
+
+/* Navbar */
+.custom-navbar {
+  background-color: var(--deep-forest) !important;
+  border-bottom: 3px solid var(--antique-gold);
+}
+.custom-navbar .navbar-brand { font-weight: 700; color: var(--antique-gold) !important; }
+.custom-navbar .nav-link { color: var(--soft-ivory) !important; font-weight: 500; }
+.custom-navbar .nav-link:hover { color: var(--antique-gold) !important; }
+
+/* Buttons */
+.btn-primary-green {
+  background-color: var(--emerald-forest);
+  border: 1px solid var(--antique-gold);
+  color: var(--soft-ivory);
+  transition: background-color 0.3s, transform 0.2s;
+}
+.btn-primary-green:hover {
+  background-color: var(--deep-forest);
+  transform: translateY(-2px);
+}
+.btn-success {
+  background-color: var(--emerald-forest);
+  border-color: var(--antique-gold);
+}
+.btn-success:hover { background-color: var(--deep-forest); }
+
+/* Forms */
+.form-control {
+  border: 1px solid var(--muted-sage);
+  background-color: var(--soft-ivory);
+  color: var(--dark-walnut);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.form-control:focus {
+  border-color: var(--emerald-forest);
+  box-shadow: 0 0 0 0.2rem rgba(40,92,73,0.25);
+}
+.form-label { font-weight: 600; color: var(--dark-walnut); }
+
+/* Cards / Dashboard Boxes */
+.card-custom {
+  background-color: var(--warm-champagne);
+  border: 1px solid var(--muted-sage);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin-bottom: 1.5rem;
+}
+.card-custom:hover { transform: translateY(-4px); box-shadow: 0 8px 12px rgba(0,0,0,0.12); }
+.card-custom .card-title { color: var(--deep-forest); font-family: var(--font-heading); }
+
+/* Tables */
+.table-custom {
+  background-color: var(--soft-ivory);
+  border: 1px solid var(--muted-sage);
+  border-radius: 0.5rem;
+}
+.table-custom th { background-color: var(--emerald-forest); color: var(--soft-ivory); }
+.table-custom td, .table-custom th { border-color: var(--muted-sage); }
+
+/* Alerts */
+.alert-success { background-color: var(--emerald-forest); color: var(--soft-ivory); border: none; }
+.alert-danger { background-color: var(--dark-walnut); color: var(--soft-ivory); border: none; }
+
+/* Badges */
+.badge-status {
+  background-color: var(--muted-sage);
+  color: var(--dark-walnut);
+  font-weight: 600;
+}
+
+/* Misc */
+.main-content { background-color: var(--soft-ivory); padding: 1.5rem; border-radius: 0.5rem; }
+
+@media (max-width: 768px) {
+  .custom-navbar .navbar-brand { font-size: 1.2rem; }
+}

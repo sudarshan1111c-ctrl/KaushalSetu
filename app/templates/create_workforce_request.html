@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">Create Workforce Request for Order: {{ order.title }}</h2>
+<form method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        {{ form.job_title.label(class="form-label") }}
+        {{ form.job_title(class="form-control", placeholder="Enter job title") }}
+        {% for error in form.job_title.errors %}
+            <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div class="mb-3">
+        {{ form.required_skills.label(class="form-label") }}
+        {{ form.required_skills(class="form-control", placeholder="comma separated skills") }}
+        {% for error in form.required_skills.errors %}
+            <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div class="mb-3">
+        {{ form.needed_quantity.label(class="form-label") }}
+        {{ form.needed_quantity(class="form-control", placeholder="Number of workers needed") }}
+        {% for error in form.needed_quantity.errors %}
+            <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div class="mb-3">
+        {{ form.location.label(class="form-label") }}
+        {{ form.location(class="form-control", placeholder="Location") }}
+        {% for error in form.location.errors %}
+            <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div class="mb-3">
+        {{ form.payment_amount.label(class="form-label") }}
+        {{ form.payment_amount(class="form-control", placeholder="Total payment amount") }}
+        {% for error in form.payment_amount.errors %}
+            <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div class="mb-3">
+        {{ form.duration_days.label(class="form-label") }}
+        {{ form.duration_days(class="form-control", placeholder="Duration in days") }}
+        {% for error in form.duration_days.errors %}
+            <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div class="mb-3">
+        {{ form.description.label(class="form-label") }}
+        {{ form.description(class="form-control", rows="4", placeholder="Job description (optional)") }}
+        {% for error in form.description.errors %}
+            <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary-green">Create Request</button>
+    <a href="{{ url_for('main.view_order', order_id=order.id) }}" class="btn btn-secondary ms-2">Cancel</a>
+</form>
+{% endblock %}

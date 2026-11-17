@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">Youth Dashboard - {{ youth.full_name }}</h2>
+{% if requests %}
+<table class="table table-hover table-striped table-custom">
+  <thead>
+    <tr>
+      <th>Request ID</th>
+      <th>Job Title</th>
+      <th>Required Skills</th>
+      <th>Needed Qty</th>
+      <th>Location</th>
+      <th>Payment</th>
+      <th>Duration (days)</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for req in requests %}
+    <tr>
+      <td>{{ req.id }}</td>
+      <td>{{ req.job_title or '(auto)' }}</td>
+      <td>{{ req.required_skills }}</td>
+      <td>{{ req.needed_quantity }}</td>
+      <td>{{ req.location or '—' }}</td>
+      <td>{{ req.payment_amount if req.payment_amount is not none else '—' }}</td>
+      <td>{{ req.duration_days if req.duration_days is not none else '—' }}</td>
+      <td>{{ req.status }}</td>
+      <td>
+        {% if req.status == 'open' and not req.applications|selectattr('youth_id', 'equalto', youth.id)|list %}
+          <a href="{{ url_for('main.apply_to_request', req_id=req.id) }}" class="btn btn-sm btn-success">Apply</a>
+        {% elif req.status != 'open' %}
+          <span class="text-muted">Closed</span>
+        {% else %}
+          <span class="text-muted">Applied</span>
+        {% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No open workforce requests at the moment.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">Applications for Request – {{ request.job_title or '(auto)' }}</h2>
+{% if applications %}
+<table class="table-custom">
+  <thead>
+    <tr>
+      <th>Applicant (Youth)</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for app in applications %}
+    <tr>
+      <td>{{ app.youth.full_name }}</td>
+      <td>{{ app.status }}</td>
+      <td>
+        {% if app.status == 'pending' %}
+        <form method="post" style="display:inline;">
+          <input type="hidden" name="app_id" value="{{ app.id }}" />
+          <button type="submit" name="action" value="accept" class="btn btn-sm btn-success">Accept</button>
+          <button type="submit" name="action" value="reject" class="btn btn-sm btn-danger">Reject</button>
+        </form>
+        {% else %}
+          {{ app.status|capitalize }}
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No applications yet.</p>
+{% endif %}
+<a href="{{ url_for('main.shg_dashboard') }}" class="btn btn-primary-green mt-3">Back to Dashboard</a>
+{% endblock %}

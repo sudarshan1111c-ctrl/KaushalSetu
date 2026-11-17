@@ -1,0 +1,79 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4 mb-5">
+
+    <h2 class="mb-4">
+        Workforce Request Details – {{ request.job_title or '(auto)' }}
+    </h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <strong>Job Title:</strong>
+                    {{ request.job_title or '(auto)' }}
+                </li>
+
+                <li class="list-group-item">
+                    <strong>Required Skills:</strong>
+                    {{ request.required_skills or 'Not specified' }}
+                </li>
+
+                <li class="list-group-item">
+                    <strong>Needed Quantity:</strong>
+                    {{ request.needed_quantity }}
+                </li>
+
+                <li class="list-group-item">
+                    <strong>Location:</strong>
+                    {{ request.location or 'Not specified' }}
+                </li>
+
+                <li class="list-group-item">
+                    <strong>Payment Amount:</strong>
+                    {{ request.payment_amount if request.payment_amount is not none else 'Not specified' }}
+                </li>
+
+                <li class="list-group-item">
+                    <strong>Duration (days):</strong>
+                    {{ request.duration_days if request.duration_days is not none else 'Not specified' }}
+                </li>
+
+                <li class="list-group-item">
+                    <strong>Description:</strong>
+                    {{ request.description or 'Not specified' }}
+                </li>
+
+                <li class="list-group-item">
+                    <strong>Status:</strong>
+                    {{ request.status }}
+                </li>
+
+                <li class="list-group-item">
+                    <strong>Order ID:</strong>
+                    {{ request.order_id }}
+                </li>
+            </ul>
+
+            {% if current_user.role == 'shg' %}
+                <a href="{{ url_for('main.view_applications', req_id=request.id) }}"
+                   class="btn btn-primary-green mt-3">
+                    View Applications
+                </a>
+            {% endif %}
+
+            <a href="{{ url_for('main.shg_dashboard') }}"
+               class="btn btn-secondary mt-3">
+                Back to Dashboard
+            </a>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

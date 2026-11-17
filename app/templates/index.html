@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron text-center">
+  <h1 class="display-4">Welcome to KaushalSetu</h1>
+  <p class="lead">Connecting Rural Women Self‑Help Groups, Youth, and Local Employers.</p>
+  {% if not current_user.is_authenticated %}
+  <a class="btn btn-primary btn-lg" href="{{ url_for('main.register') }}" role="button">Get Started</a>
+  {% endif %}
+</div>
+{% endblock %}

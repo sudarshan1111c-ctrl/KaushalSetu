@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">Create New Order</h2>
+<form method="POST" novalidate>
+  {{ form.hidden_tag() }}
+  <div class="mb-3">
+    {{ form.title.label(class="form-label") }}
+    {{ form.title(class="form-control") }}
+    {% for error in form.title.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
+  </div>
+  <div class="mb-3">
+    {{ form.description.label(class="form-label") }}
+    {{ form.description(class="form-control", rows=4) }}
+  </div>
+  <div class="mb-3">
+    {{ form.quantity.label(class="form-label") }}
+    {{ form.quantity(class="form-control") }}
+    {% for error in form.quantity.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
+  </div>
+  <div class="mb-3">
+    {{ form.deadline.label(class="form-label") }}
+    {{ form.deadline(class="form-control") }}
+    {% for error in form.deadline.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
+  </div>
+  {{ form.submit(class="btn btn-success") }}
+</form>
+{% endblock %}

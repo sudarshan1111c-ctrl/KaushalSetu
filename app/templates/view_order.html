@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">Order Details – {{ order.title }}</h2>
+
+<div class="card-custom mb-4">
+  <div class="card-body">
+    <h5 class="card-title">{{ order.title }}</h5>
+    <p class="card-text"><strong>Description:</strong> {{ order.description or "No description provided." }}</p>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><strong>Quantity:</strong> {{ order.quantity }}</li>
+      <li class="list-group-item"><strong>Deadline:</strong> {{ order.deadline.strftime('%Y-%m-%d %H:%M') }}</li>
+      <li class="list-group-item"><strong>Created At:</strong> {{ order.created_at.strftime('%Y-%m-%d %H:%M') }}</li>
+    </ul>
+  </div>
+</div>
+
+{% if order.workforce_requests %}
+  <h4 class="mb-3">Workforce Requests</h4>
+  <table class="table-custom">
+    <thead>
+      <tr>
+        <th>Job Title</th>
+        <th>Required Skills</th>
+        <th>Needed Qty</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for req in order.workforce_requests %}
+      <tr>
+        <td>{{ req.job_title or "(auto)" }}</td>
+        <td>{{ req.required_skills }}</td>
+        <td>{{ req.needed_quantity }}</td>
+        <td>{{ req.status }}</td>
+        <td><a href="{{ url_for('main.view_workforce_request', req_id=req.id) }}" class="btn btn-sm btn-primary-green">View</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>No workforce requests linked to this order yet.</p>
+  <a href="{{ url_for('main.create_workforce_request', order_id=order.id) }}" class="btn btn-primary-green mt-3">Create Workforce Request</a>
+{% endif %}
+
+<a href="{{ url_for('main.shg_dashboard') }}" class="btn btn-primary-green mt-3"><i class="bi bi-arrow-left"></i> Back to Dashboard</a>
+{% endblock %}
